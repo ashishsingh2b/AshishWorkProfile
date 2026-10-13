@@ -171,7 +171,13 @@ export default function ContactForm() {
       return;
     }
 
-    if (!validateAll()) {
+    if (!validateAll() || humanStatus !== 'verified') {
+      if (humanStatus !== 'verified') {
+        setErrors((prev) => ({
+          ...prev,
+          human: 'Please check "I am human" to verify before sending.',
+        }));
+      }
       return;
     }
 
@@ -184,6 +190,7 @@ export default function ContactForm() {
       email: formData.email.trim(),
       subject: formData.subject.trim(),
       message: formData.message.trim(),
+      humanVerified: humanStatus === 'verified',
     };
 
     try {
@@ -669,14 +676,23 @@ export default function ContactForm() {
           )}
         </div>
 
-        {/* Send Message Button with Duplicate Submission Prevention & Loading State */}
-        <div className="pt-2">
+        {/* Send Message Button with Human Check Condition, Duplicate Submission Prevention & Loading State */}
+        <div
+          className="pt-2"
+          onClick={() => {
+            if (!isSubmitting && humanStatus !== 'verified') {
+              validateAll();
+            }
+          }}
+        >
           <Button
             type="submit"
             variant="primary"
             size="lg"
-            className="w-full font-bold shadow-md"
-            disabled={isSubmitting}
+            className={`w-full font-bold shadow-md ${
+              humanStatus !== 'verified' ? 'pointer-events-none' : ''
+            }`}
+            disabled={isSubmitting || humanStatus !== 'verified'}
             icon={isSubmitting ? Loader2 : Send}
             iconClassName={isSubmitting ? 'animate-spin' : ''}
           >

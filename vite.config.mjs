@@ -63,6 +63,11 @@ function createContactApiMiddleware(env) {
         res.end(JSON.stringify({ ok: false, error: 'Please provide a message of at least 10 characters.' }));
         return;
       }
+      if (payload.humanVerified !== true) {
+        res.statusCode = 400;
+        res.end(JSON.stringify({ ok: false, error: 'Please check "I am human" to verify before sending.' }));
+        return;
+      }
 
       const formattedSubject = `[Portfolio Hiring / Inquiry] ${subject} — ${companyOrClientName}`;
 
