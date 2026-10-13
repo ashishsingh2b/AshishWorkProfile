@@ -22,9 +22,9 @@ export const personalInfo = {
   currentRole: "Python Full Stack Developer",
   currentSince: "April 2024",
   stats: [
-    { label: "Production Projects", value: "4+", detail: "AI, Healthcare ERP, E-Commerce & Security" },
+    { label: "Production Projects", value: "5+", detail: "ERP, AI, Healthcare, E-Commerce & Security" },
     { label: "REST APIs Delivered", value: "100+", detail: "For RiverGen Model Studio lifecycle" },
-    { label: "Core Domains", value: "4", detail: "AI, Healthcare, E-Commerce, Security" },
+    { label: "Core Domains", value: "5", detail: "ERP, AI, Healthcare, E-Commerce, Security" },
     { label: "Code Architecture", value: "100%", detail: "Production-ready & clean standards" }
   ],
   techPreview: [

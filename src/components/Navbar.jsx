@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Moon, Sun, ArrowUpRight, Code2, Download } from 'lucide-react';
+import { Menu, X, Moon, Sun, ArrowUpRight, Download } from 'lucide-react';
 import { Github, Linkedin } from './Icons';
 import Button from './Button';
 import { personalInfo } from '../data/personal';
@@ -21,36 +21,60 @@ export default function Navbar({ isDarkMode, onToggleTheme }) {
   const [activeSection, setActiveSection] = useState('hero');
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Scroll listener for sticky styles and active section highlight
+  // Smooth rAF-throttled scroll listener for sticky styles and accurate active section highlight
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+    const sections = navItems.map((item) => item.href.substring(1));
+    let ticking = false;
 
-      const sections = navItems.map((item) => item.href.substring(1));
-      const scrollPos = window.scrollY + 200;
+    const updateScrollState = () => {
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 20);
+
+      const scrollPos = currentScrollY + 180;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
-        if (el && el.offsetTop <= scrollPos) {
-          setActiveSection(sections[i]);
-          break;
+        if (el) {
+          const elTop = el.getBoundingClientRect().top + currentScrollY;
+          if (elTop <= scrollPos) {
+            setActiveSection(sections[i]);
+            break;
+          }
         }
+      }
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollState);
+        ticking = true;
       }
     };
 
+    updateScrollState();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lock scroll when mobile menu is open
+  // Lock scroll and allow Escape key to close mobile menu
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
+    if (!isMobileMenuOpen) {
       document.body.style.overflow = 'unset';
+      return;
     }
+
+    document.body.style.overflow = 'hidden';
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
     return () => {
       document.body.style.overflow = 'unset';
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isMobileMenuOpen]);
 
@@ -60,12 +84,12 @@ export default function Navbar({ isDarkMode, onToggleTheme }) {
     const targetId = href.substring(1);
     const targetEl = document.getElementById(targetId);
     if (targetEl) {
-      const navOffset = 70;
+      const navOffset = 72;
       const elementPosition = targetEl.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+      const offsetPosition = elementPosition + window.scrollY - navOffset;
 
       window.scrollTo({
-        top: offsetPosition,
+        top: Math.max(0, offsetPosition),
         behavior: 'smooth',
       });
     }
@@ -87,9 +111,11 @@ export default function Navbar({ isDarkMode, onToggleTheme }) {
             onClick={(e) => handleNavClick(e, '#hero')}
             className="flex items-center gap-2.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded-xl p-1"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-700 to-brand-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
-              <span className="font-extrabold text-sm tracking-tight">AS</span>
-            </div>
+            <img
+              src="/favicon.svg?v=2"
+              alt={`${personalInfo.name} Logo`}
+              className="w-10 h-10 rounded-xl shadow-md shadow-brand-500/20 group-hover:scale-105 group-hover:-rotate-3 transition-transform duration-300"
+            />
             <div className="flex flex-col">
               <span className="font-bold text-slate-900 dark:text-white text-base tracking-tight leading-tight group-hover:text-brand-600 transition-colors">
                 {personalInfo.name}

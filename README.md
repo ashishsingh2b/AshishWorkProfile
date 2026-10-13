@@ -172,24 +172,17 @@ Edit `src/data/projects.js`:
 ### Updating the Resume PDF
 Replace `public/resume.pdf` with the updated file. The "Download Resume" buttons on the Hero, Navbar, Footer, and Contact sections all link to `/resume.pdf`.
 
-### Configuring the Contact Form (Formspree or EmailJS)
-The contact form is **fully functional** and ready to send messages directly to **`ashishsingh2b@gmail.com`**.
-It includes client-side field validation, dynamic loading state (`Loader2`), success confirmation alert, and error recovery with email app (`mailto:`) and clipboard copy fallbacks.
+### Configuring the Contact Form (Secure Backend `/api/contact`)
+The Contact Us form is **fully functional** and routes inquiries through the backend endpoint (`/api/contact`) directly to **`ashishsingh2b@gmail.com`**, keeping all email credentials and secret keys strictly on the server (never exposed via `VITE_` frontend variables).
 
-- **Option A: Formspree (Default & Recommended)**
-  1. Register for free at [Formspree](https://formspree.io/).
-  2. Create a new form with target email `ashishsingh2b@gmail.com`.
-  3. Set `VITE_FORMSPREE_ID=your_form_id` in `.env` (or set `VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/your_form_id`).
+It collects **Company Name or Client Name**, **Sender's Email Address** (accepting Gmail, Yahoo, Outlook, and any company/custom domain), **Subject / Job Role**, and **Message for Ashish**, with full client- and server-side validation, duplicate submission protection, and clear success/error feedback.
 
-- **Option B: EmailJS**
-  1. Register at [EmailJS](https://www.emailjs.com/) and connect your Gmail account (`ashishsingh2b@gmail.com`).
-  2. Create an Email Template with fields: `{{from_name}}`, `{{from_email}}`, `{{subject}}`, `{{message}}`.
-  3. Add the following to `.env`:
-     ```env
-     VITE_EMAILJS_SERVICE_ID=your_service_id
-     VITE_EMAILJS_TEMPLATE_ID=your_template_id
-     VITE_EMAILJS_PUBLIC_KEY=your_public_key
-     ```
+Configure your preferred provider in `.env` (see `.env.example`):
+- **Receiver Email:** `CONTACT_RECEIVER_EMAIL=ashishsingh2b@gmail.com`
+- **Option A — Formspree:** `FORMSPREE_ID=your_form_id`
+- **Option B — Web3Forms:** `WEB3FORMS_ACCESS_KEY=your_secret_access_key`
+- **Option C — Resend:** `RESEND_API_KEY=re_your_secret_api_key`
+- **Option D — EmailJS:** `EMAILJS_SERVICE_ID`, `EMAILJS_TEMPLATE_ID`, `EMAILJS_PUBLIC_KEY`, `EMAILJS_PRIVATE_KEY`
 
 ---
 

@@ -4,10 +4,20 @@ import { ExternalLink, ArrowRight, Star, Eye } from 'lucide-react';
 export default function ProjectCard({ project, onSelect }) {
   const isFeatured = project.id === 'timepe-services' || project.isFeatured;
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onSelect(project);
+    }
+  };
+
   return (
     <div
+      role="button"
+      tabIndex={0}
       onClick={() => onSelect(project)}
-      className={`group relative flex flex-col h-full rounded-3xl bg-white dark:bg-slate-900 border transition-all duration-300 cursor-pointer overflow-hidden ${
+      onKeyDown={handleKeyDown}
+      className={`group relative flex flex-col h-full rounded-3xl bg-white dark:bg-slate-900 border transition-all duration-300 cursor-pointer overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 ${
         isFeatured
           ? 'border-brand-500/40 dark:border-brand-500/50 shadow-md hover:shadow-2xl hover:border-brand-500 hover:-translate-y-2 ring-1 ring-brand-500/10'
           : 'border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-2xl hover:border-brand-500/60 hover:-translate-y-2'

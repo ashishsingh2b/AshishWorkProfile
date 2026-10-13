@@ -13,7 +13,7 @@ const iconMap = {
 
 export default function Achievements() {
   return (
-    <section id="achievements" className="py-24 lg:py-32 bg-slate-50/60 dark:bg-slate-950/60 border-y border-slate-200/60 dark:border-slate-850">
+    <section id="achievements" className="py-24 lg:py-32 bg-slate-50/60 dark:bg-slate-950/60 border-y border-slate-200/60 dark:border-slate-850 scroll-mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Key Achievements"
@@ -21,13 +21,13 @@ export default function Achievements() {
           description="Verified accomplishments delivering scalable backends, real-time speech AI integrations, and mission-critical cloud deployments."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="reveal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {achievements.map((item) => {
             const Icon = iconMap[item.icon] || Award;
             return (
               <div
                 key={item.id}
-                className="p-7 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between group"
+                className="p-7 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
                   {/* Top Bar with Icon and Tag */}

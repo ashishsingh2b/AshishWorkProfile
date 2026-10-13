@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Globe, Download, Send, Clock, ShieldCheck, FileText } from 'lucide-react';
+import { Mail, Phone, MapPin, Download } from 'lucide-react';
 import { Github, Linkedin } from '../components/Icons';
 import SectionHeading from '../components/SectionHeading';
 import ContactForm from '../components/ContactForm';
@@ -11,14 +11,14 @@ export default function Contact() {
     <section id="contact" className="py-24 lg:py-32 bg-white dark:bg-slate-900 scroll-mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="Get In Touch"
-          title="Let's Build Something High-Impact Together"
-          description="Open for Python Full Stack engineering roles, backend consulting, full-stack contracts, and international development collaborations."
+          eyebrow="Contact Us"
+          title="Hire Ashish or Start a Collaboration"
+          description="Available for Python Full Stack engineering roles, backend consulting, full-stack contracts, and client projects. Send a message directly below."
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Direct Contact Info & Channels (5 cols) */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="reveal lg:col-span-5 space-y-6">
             <div className="p-8 rounded-3xl bg-slate-50/80 dark:bg-slate-850 border border-slate-200/80 dark:border-slate-800 space-y-6">
               <div>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white">
@@ -34,7 +34,7 @@ export default function Contact() {
                 {/* Email */}
                 <a
                   href={`mailto:${personalInfo.email}`}
-                  className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-800 hover:border-brand-500/50 hover:shadow-md transition-all flex items-center gap-4 group"
+                  className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-800 hover:border-brand-500/50 hover:-translate-y-0.5 hover:shadow-md transition-all flex items-center gap-4 group"
                   title="Send Email"
                 >
                   <div className="p-3 rounded-xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 group-hover:bg-brand-600 group-hover:text-white transition-colors">
@@ -53,7 +53,7 @@ export default function Contact() {
                 {/* Phone */}
                 <a
                   href={`tel:${personalInfo.phone}`}
-                  className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-800 hover:border-brand-500/50 hover:shadow-md transition-all flex items-center gap-4 group"
+                  className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-800 hover:border-brand-500/50 hover:-translate-y-0.5 hover:shadow-md transition-all flex items-center gap-4 group"
                   title="Call Directly"
                 >
                   <div className="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
@@ -131,8 +131,8 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right Column: Static Frontend Contact Form (7 cols) */}
-          <div className="lg:col-span-7">
+          {/* Right Column: Contact Form (7 cols) */}
+          <div className="reveal lg:col-span-7">
             <ContactForm />
           </div>
         </div>

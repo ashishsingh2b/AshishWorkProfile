@@ -14,7 +14,7 @@ export default function SectionHeading({
   }[align] || 'text-center mx-auto';
 
   return (
-    <div className={`max-w-3xl mb-12 lg:mb-16 ${alignClass} ${className}`}>
+    <div className={`reveal max-w-3xl mb-12 lg:mb-16 ${alignClass} ${className}`}>
       {eyebrow && (
         <div className="inline-flex items-center gap-2 px-3 py-1 mb-3 rounded-full text-xs font-semibold tracking-wider uppercase bg-brand-50 text-brand-700 border border-brand-200/60 dark:bg-brand-950/50 dark:text-brand-300 dark:border-brand-800/60">
           <span className="w-1.5 h-1.5 rounded-full bg-brand-600 animate-pulse" />

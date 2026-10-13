@@ -11,9 +11,7 @@ import {
   CreditCard,
   ShieldCheck,
   Clock,
-  Layers,
-  CheckCircle2,
-  Gauge
+  Layers
 } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import { skillCategories, coreCapabilities } from '../data/skills';
@@ -42,7 +40,7 @@ export default function Skills() {
       : skillCategories.filter((c) => c.id === selectedCategory);
 
   return (
-    <section id="skills" className="py-24 lg:py-32 bg-slate-50/50 dark:bg-slate-950/50 border-y border-slate-200/60 dark:border-slate-850">
+    <section id="skills" className="py-24 lg:py-32 bg-slate-50/50 dark:bg-slate-950/50 border-y border-slate-200/60 dark:border-slate-850 scroll-mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Technical Proficiency"
@@ -93,19 +91,19 @@ export default function Skills() {
         </div>
 
         {/* Clean, De-congested Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+        <div key={selectedCategory} className="reveal is-visible grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {displayedCategories.map((category) => {
             const Icon = iconMap[category.icon] || Server;
             return (
               <div
                 key={category.id}
-                className="rounded-3xl p-7 sm:p-8 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between"
+                className="animate-scale-in rounded-3xl p-7 sm:p-8 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
                   {/* Category Header */}
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">
-                      <div className="p-2.5 rounded-2xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 border border-brand-200/60 dark:border-brand-800/60">
+                      <div className="p-2.5 rounded-2xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 border border-brand-200/60 dark:border-indigo-800/60 group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
                         <Icon className="w-5 h-5" />
                       </div>
                       <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
@@ -161,7 +159,7 @@ export default function Skills() {
         </div>
 
         {/* Core Architectural Capabilities Showcase with Spacious Layout */}
-        <div className="p-8 sm:p-12 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm">
+        <div className="reveal p-8 sm:p-12 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">
@@ -185,7 +183,7 @@ export default function Skills() {
               return (
                 <div
                   key={idx}
-                  className="p-6 rounded-2xl bg-slate-50/70 dark:bg-slate-850 border border-slate-200/70 dark:border-slate-800 shadow-sm flex flex-col justify-between"
+                  className="p-6 rounded-2xl bg-slate-50/70 dark:bg-slate-850 border border-slate-200/70 dark:border-slate-800 shadow-sm hover:-translate-y-1 hover:shadow-md hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between group"
                 >
                   <div className="flex items-start gap-4">
                     <div className="p-3 rounded-2xl bg-brand-50 dark:bg-brand-950/50 text-brand-600 dark:text-brand-400 shrink-0">

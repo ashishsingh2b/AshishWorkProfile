@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Download, ExternalLink } from 'lucide-react';
+import { Mail, Phone, MapPin, Download } from 'lucide-react';
 import { Github, Linkedin } from './Icons';
 import { personalInfo } from '../data/personal';
 
@@ -13,9 +13,11 @@ export default function Footer() {
           {/* Brand & Bio (2 cols) */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-400 flex items-center justify-center text-white font-extrabold text-sm shadow-md">
-                AS
-              </div>
+              <img
+                src="/favicon.svg?v=2"
+                alt={`${personalInfo.name} Logo`}
+                className="w-10 h-10 rounded-xl shadow-md"
+              />
               <div>
                 <span className="font-extrabold text-white text-lg tracking-tight block">
                   {personalInfo.name}
@@ -173,9 +175,12 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
           <p>
             &copy; {currentYear} {personalInfo.name}. All rights reserved. Python Full Stack Engineering.
+          </p>
+          <p className="text-[11px] text-slate-500/90 tracking-wide">
+            Developed by <span className="font-semibold text-slate-400">Krish Lad</span>
           </p>
         </div>
       </div>

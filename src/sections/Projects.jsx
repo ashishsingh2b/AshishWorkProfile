@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Filter, Star, Sparkles, AlertCircle } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import ProjectCard from '../components/ProjectCard';
 import ProjectModal from '../components/ProjectModal';
@@ -81,7 +81,7 @@ export default function Projects() {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div key={activeCategory} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in">
             {filteredProjects.map((project) => (
               <ProjectCard
                 key={project.id}

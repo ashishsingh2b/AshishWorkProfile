@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle2, Briefcase, Award, Code, Globe, Shield, Database, Sparkles } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import { personalInfo } from '../data/personal';
 
@@ -14,7 +14,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-24 lg:py-32 bg-slate-50/60 dark:bg-slate-950/60 border-y border-slate-200/60 dark:border-slate-850">
+    <section id="about" className="py-24 lg:py-32 bg-slate-50/60 dark:bg-slate-950/60 border-y border-slate-200/60 dark:border-slate-850 scroll-mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="About Me"
@@ -25,7 +25,7 @@ export default function About() {
         {/* Main Grid with spacious gap */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
           {/* Left Text Column (7 cols) */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="reveal lg:col-span-7 space-y-6">
             {/* Properly sized, refined narrative text */}
             <div className="space-y-4 text-sm sm:text-[15px] leading-relaxed text-slate-600 dark:text-slate-300">
               <p>
@@ -44,7 +44,7 @@ export default function About() {
               {highlights.map((item, idx) => (
                 <div
                   key={idx}
-                  className="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm flex items-start gap-3"
+                  className="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:border-brand-500/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 flex items-start gap-3"
                 >
                   <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-brand-600 shrink-0 mt-0.5" />
                   <div>
@@ -61,13 +61,13 @@ export default function About() {
           </div>
 
           {/* Right Statistics & Credentials Column (5 cols) */}
-          <div className="lg:col-span-5 space-y-5">
+          <div className="reveal lg:col-span-5 space-y-5">
             {/* Stat Cards */}
             <div className="grid grid-cols-2 gap-4">
               {personalInfo.stats.map((stat, idx) => (
                 <div
                   key={idx}
-                  className="p-6 sm:p-7 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:border-brand-500/50 hover:shadow-md transition-all text-center flex flex-col justify-center"
+                  className="p-6 sm:p-7 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:border-brand-500/50 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 text-center flex flex-col justify-center"
                 >
                   <span className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-indigo-600">
                     {stat.value}

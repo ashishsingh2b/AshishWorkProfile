@@ -11,12 +11,13 @@ export default function Button({
   rel,
   className = '',
   icon: Icon,
+  iconClassName = '',
   iconPosition = 'right',
   type = 'button',
   disabled = false,
   ...props
 }) {
-  const baseStyles = 'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2';
+  const baseStyles = 'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2';
 
   const sizeStyles = {
     sm: 'text-xs px-3.5 py-1.5 gap-1.5',
@@ -46,9 +47,9 @@ export default function Button({
         onClick={onClick}
         {...props}
       >
-        {Icon && iconPosition === 'left' && <Icon className="w-4 h-4 shrink-0" />}
+        {Icon && iconPosition === 'left' && <Icon className={`w-4 h-4 shrink-0 ${iconClassName}`} />}
         <span>{children}</span>
-        {Icon && iconPosition === 'right' && <Icon className="w-4 h-4 shrink-0" />}
+        {Icon && iconPosition === 'right' && <Icon className={`w-4 h-4 shrink-0 ${iconClassName}`} />}
       </a>
     );
   }
@@ -61,9 +62,9 @@ export default function Button({
       disabled={disabled}
       {...props}
     >
-      {Icon && iconPosition === 'left' && <Icon className="w-4 h-4 shrink-0" />}
+      {Icon && iconPosition === 'left' && <Icon className={`w-4 h-4 shrink-0 ${iconClassName}`} />}
       <span>{children}</span>
-      {Icon && iconPosition === 'right' && <Icon className="w-4 h-4 shrink-0" />}
+      {Icon && iconPosition === 'right' && <Icon className={`w-4 h-4 shrink-0 ${iconClassName}`} />}
     </button>
   );
 }

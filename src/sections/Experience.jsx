@@ -21,7 +21,7 @@ export default function Experience() {
         {/* ========================================================= */}
         {/* PART 1: EDUCATION & QUALIFICATIONS (FIRST)                */}
         {/* ========================================================= */}
-        <div className="mb-20">
+        <div className="reveal mb-20">
           {/* Subheader */}
           <div className="flex items-center gap-3 mb-10 pb-4 border-b border-slate-200/70 dark:border-slate-800">
             <div className="p-2.5 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200/60 dark:border-indigo-800/60">
@@ -42,12 +42,12 @@ export default function Experience() {
             {sortedEducation.map((edu) => (
               <div key={edu.id} className="relative group">
                 {/* Timeline Pin Node */}
-                <div className="absolute -left-[30px] sm:-left-[46px] top-1.5 w-6 h-6 sm:w-8 sm:h-8 rounded-full border-4 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-400 group-hover:border-indigo-500 group-hover:text-indigo-600 transition-all flex items-center justify-center">
+                <div className="absolute -left-[30px] sm:-left-[46px] top-1.5 w-6 h-6 sm:w-8 sm:h-8 rounded-full border-4 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-400 group-hover:border-indigo-500 group-hover:text-indigo-600 group-hover:scale-110 transition-all flex items-center justify-center">
                   <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-indigo-600" />
                 </div>
 
                 {/* Education Card */}
-                <div className="p-6 sm:p-7 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-indigo-500/40 transition-all duration-300">
+                <div className="p-6 sm:p-7 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-indigo-500/40 transition-all duration-300">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 mb-3 border-b border-slate-100 dark:border-slate-800">
                     <div>
                       <div className="flex flex-wrap items-center gap-2">
@@ -84,7 +84,7 @@ export default function Experience() {
         {/* ========================================================= */}
         {/* PART 2: PROFESSIONAL WORK EXPERIENCE (THEN)               */}
         {/* ========================================================= */}
-        <div id="experience" className="pt-6 scroll-mt-20">
+        <div id="experience" className="reveal pt-6 scroll-mt-20">
           {/* Subheader */}
           <div className="flex items-center gap-3 mb-10 pb-4 border-b border-slate-200/70 dark:border-slate-800">
             <div className="p-2.5 rounded-2xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 border border-brand-200/60 dark:border-brand-800/60">
@@ -106,7 +106,7 @@ export default function Experience() {
               <div key={exp.id} className="relative group">
                 {/* Timeline Pin Node */}
                 <div
-                  className={`absolute -left-[30px] sm:-left-[46px] top-1.5 w-6 h-6 sm:w-8 sm:h-8 rounded-full border-4 flex items-center justify-center transition-all ${
+                  className={`absolute -left-[30px] sm:-left-[46px] top-1.5 w-6 h-6 sm:w-8 sm:h-8 rounded-full border-4 flex items-center justify-center group-hover:scale-110 transition-all ${
                     exp.current
                       ? 'border-brand-600 bg-white dark:bg-slate-900 text-brand-600 shadow-md shadow-brand-600/30 ring-4 ring-brand-100 dark:ring-brand-950'
                       : 'border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-400 group-hover:border-brand-500'
@@ -120,7 +120,7 @@ export default function Experience() {
                 </div>
 
                 {/* Experience Card */}
-                <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-brand-500/40 transition-all duration-300">
+                <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-500/40 transition-all duration-300">
                   {/* Header Row */}
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b border-slate-100 dark:border-slate-800">
                     <div>

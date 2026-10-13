@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, Download, Mail, Terminal, CheckCircle2, MapPin, Sparkles, Code2, Database, Layers } from 'lucide-react';
+import { ArrowRight, Download, Mail, MapPin } from 'lucide-react';
 import { Github, Linkedin } from '../components/Icons';
 import Button from '../components/Button';
 import { personalInfo } from '../data/personal';
@@ -48,7 +48,7 @@ export function FullStackDashboard({ tenantId }) {
   };
 
   return (
-    <section id="hero" className="relative pt-16 pb-24 lg:pt-24 lg:pb-36 overflow-hidden bg-gradient-to-b from-slate-50/80 via-white to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-900">
+    <section id="hero" className="relative pt-16 pb-24 lg:pt-24 lg:pb-36 overflow-hidden bg-gradient-to-b from-slate-50/80 via-white to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 scroll-mt-16">
       {/* Decorative background grid and blurs */}
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-40 dark:opacity-10 pointer-events-none" />
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-brand-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -58,7 +58,7 @@ export function FullStackDashboard({ tenantId }) {
           {/* Left Column: Introductions & Actions (7 cols) */}
           <div className="lg:col-span-7 space-y-7 text-center lg:text-left">
             {/* Unified Status & Role Pill */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200/80 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/80 shadow-sm">
+            <div className="animate-slide-up inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200/80 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800/80 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span>Available for Hire</span>
               <span className="text-emerald-300 dark:text-emerald-700">&bull;</span>
@@ -66,9 +66,12 @@ export function FullStackDashboard({ tenantId }) {
             </div>
 
             {/* Name & Headline with Airy Typography */}
-            <div className="space-y-3.5">
+            <div className="animate-slide-up [animation-delay:80ms] space-y-3.5">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.12]">
-                Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-indigo-600">{personalInfo.name}</span>
+                Hi, I'm{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 via-indigo-600 to-sky-500 bg-[length:200%_auto] animate-gradient-x">
+                  {personalInfo.name}
+                </span>
               </h1>
               <p className="text-lg sm:text-xl font-semibold text-brand-600 dark:text-brand-400">
                 {personalInfo.headline}
@@ -76,12 +79,12 @@ export function FullStackDashboard({ tenantId }) {
             </div>
 
             {/* Intro Bio */}
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            <p className="animate-slide-up [animation-delay:150ms] text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
               {personalInfo.bio}
             </p>
 
             {/* Primary Action Buttons */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3.5 pt-1">
+            <div className="animate-slide-up [animation-delay:220ms] flex flex-wrap items-center justify-center lg:justify-start gap-3.5 pt-1">
               <Button
                 href="#projects"
                 variant="primary"
@@ -113,7 +116,7 @@ export function FullStackDashboard({ tenantId }) {
             </div>
 
             {/* Professional External Profiles: GitHub & LinkedIn */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1">
+            <div className="animate-slide-up [animation-delay:280ms] flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1">
               <a
                 href={personalInfo.github}
                 target="_blank"
@@ -138,7 +141,7 @@ export function FullStackDashboard({ tenantId }) {
             </div>
 
             {/* Technology Preview Badges */}
-            <div className="pt-6 border-t border-slate-200/80 dark:border-slate-800">
+            <div className="animate-slide-up [animation-delay:340ms] pt-6 border-t border-slate-200/80 dark:border-slate-800">
               <p className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-3">
                 Core Production Stack
               </p>
@@ -146,7 +149,7 @@ export function FullStackDashboard({ tenantId }) {
                 {personalInfo.techPreview.map((item, idx) => (
                   <div
                     key={idx}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-brand-500 transition-colors"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-brand-500 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-brand-600" />
                     <span>{item.name}</span>
@@ -157,8 +160,8 @@ export function FullStackDashboard({ tenantId }) {
           </div>
 
           {/* Right Column: Interactive Code Visual & Developer Card (5 cols) */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl overflow-hidden text-left">
+          <div className="lg:col-span-5 relative animate-slide-up [animation-delay:180ms]">
+            <div className="relative rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl overflow-hidden text-left animate-float">
               {/* Window Header */}
               <div className="px-5 py-3.5 bg-slate-950/80 border-b border-slate-800 flex items-center justify-between">
                 <div className="flex items-center gap-2">
@@ -212,8 +215,11 @@ export function FullStackDashboard({ tenantId }) {
 
               {/* Code Editor Body */}
               <div className="p-5 sm:p-6 font-mono text-xs sm:text-[13px] text-slate-300 leading-relaxed overflow-x-auto min-h-[220px]">
-                <pre className="text-slate-200">
-                  <code>{codeSnippets[activeTab]}</code>
+                <pre key={activeTab} className="text-slate-200 animate-fade-in">
+                  <code>
+                    {codeSnippets[activeTab]}
+                    <span className="inline-block w-2 h-4 ml-1 align-middle bg-brand-400 animate-pulse" />
+                  </code>
                 </pre>
               </div>
 
@@ -227,7 +233,7 @@ export function FullStackDashboard({ tenantId }) {
                   <span className="text-brand-400 font-semibold">{personalInfo.currentCompany}</span>
                 </div>
                 <div className="flex items-center justify-between text-[11px] text-slate-500 pt-1.5 border-t border-slate-850">
-                  <span>4 Production Deployments</span>
+                  <span>5 Production Projects</span>
                   <span className="text-emerald-400 font-mono">100+ REST APIs Built</span>
                 </div>
               </div>

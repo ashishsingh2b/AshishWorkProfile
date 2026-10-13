@@ -5,11 +5,12 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
     -webkit-tap-highlight-color: transparent;
   }
   
   body {
-    @apply font-sans text-slate-800 bg-white transition-colors duration-200;
+    @apply font-sans text-slate-800 bg-white transition-colors duration-200 overflow-x-hidden;
   }
 
   /* Accessible focus states */
@@ -19,6 +20,16 @@
   textarea:focus-visible {
     @apply outline-none ring-2 ring-brand-600 ring-offset-2 dark:ring-offset-slate-900;
   }
+}
+
+/* Hide scrollbar for horizontal pill bars while preserving scroll functionality */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
 
 /* Custom minimal scrollbar */
@@ -57,4 +68,27 @@
 /* Code badge and syntax styling */
 .glass-card {
   @apply bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-sm dark:bg-slate-900/90 dark:border-slate-800 dark:shadow-none;
+}
+
+/* Smooth scroll-reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }

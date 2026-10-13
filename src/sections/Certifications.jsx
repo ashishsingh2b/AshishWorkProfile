@@ -8,7 +8,7 @@ export default function Certifications() {
   const sortedCertifications = [...certifications].sort((a, b) => b.sortYear - a.sortYear);
 
   return (
-    <section id="certifications" className="py-24 lg:py-32 bg-slate-50/60 dark:bg-slate-950/60 border-y border-slate-200/60 dark:border-slate-850">
+    <section id="certifications" className="py-24 lg:py-32 bg-slate-50/60 dark:bg-slate-950/60 border-y border-slate-200/60 dark:border-slate-850 scroll-mt-16">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Credentials"
@@ -16,11 +16,11 @@ export default function Certifications() {
           description="Industry-recognized technical certifications in specialized Python development and enterprise software tooling."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="reveal grid grid-cols-1 md:grid-cols-2 gap-8">
           {sortedCertifications.map((cert) => (
             <div
               key={cert.id}
-              className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between group"
+              className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-5">
