@@ -82,7 +82,7 @@ export const projects = [
   },
   {
     id: "rivergen-ai",
-    title: "RiverGen",
+    title: "NeuralFlow",
     tagline: "Enterprise AI Data & Machine Learning Model Management Platform",
     categoryLabel: "AI and Machine Learning / Full-Stack",
     categories: ["AI and Machine Learning", "Full-Stack Development"],
@@ -128,7 +128,7 @@ export const projects = [
   },
   {
     id: "dentalnote-ai",
-    title: "DentalNote AI",
+    title: "Dentora",
     tagline: "Next-Generation Dental Healthcare ERP & Clinical Speech AI",
     categoryLabel: "Healthcare / AI & ERP",
     categories: ["Healthcare", "AI and Machine Learning", "Full-Stack Development"],
@@ -174,7 +174,7 @@ export const projects = [
   },
   {
     id: "earthworm-security",
-    title: "Earthworm",
+    title: "SecureSphere",
     tagline: "Automated Cybersecurity, Network Scanning & Compliance Platform",
     categoryLabel: "Cybersecurity / Business Applications",
     categories: ["Cybersecurity", "Business Applications"],
@@ -220,7 +220,7 @@ export const projects = [
   },
   {
     id: "lootamo-ecommerce",
-    title: "Lootamo",
+    title: "PixelCart",
     tagline: "High-Performance Digital Products & Automated License E-Commerce",
     categoryLabel: "E-commerce / Full-Stack",
     categories: ["E-commerce", "Full-Stack Development"],
