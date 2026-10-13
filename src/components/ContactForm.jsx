@@ -37,6 +37,8 @@ export default function ContactForm() {
     message: '',
   });
 
+  const [honeypot, setHoneypot] = useState('');
+  const [humanStatus, setHumanStatus] = useState('unchecked'); // 'unchecked' | 'verifying' | 'verified'
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle'); // 'idle' | 'submitting' | 'success' | 'error'
   const [serverError, setServerError] = useState('');
@@ -110,8 +112,27 @@ export default function ContactForm() {
       }
     });
 
+    if (humanStatus !== 'verified') {
+      newErrors.human = 'Please check "I am human" to verify before sending.';
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
+  };
+
+  const handleHumanToggle = () => {
+    if (status === 'submitting' || humanStatus === 'verifying') return;
+
+    if (humanStatus === 'verified') {
+      setHumanStatus('unchecked');
+      return;
+    }
+
+    setErrors((prev) => ({ ...prev, human: '' }));
+    setHumanStatus('verifying');
+    setTimeout(() => {
+      setHumanStatus('verified');
+    }, 450);
   };
 
   const handleChange = (e) => {
@@ -139,6 +160,11 @@ export default function ContactForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Bot honeypot check
+    if (honeypot) {
+      return;
+    }
 
     // Prevent duplicate submissions while an email is already being sent
     if (isSubmittingRef.current || status === 'submitting') {
@@ -282,6 +308,7 @@ export default function ContactForm() {
         subject: '',
         message: '',
       });
+      setHumanStatus('unchecked');
       setErrors({});
     } catch (err) {
       console.error('Contact Form Submission Error:', err);
@@ -551,6 +578,97 @@ export default function ContactForm() {
           )}
         </div>
 
+        {/* Hidden Anti-Bot Honeypot */}
+        <input
+          type="text"
+          name="_gotcha"
+          tabIndex={-1}
+          autoComplete="off"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+          className="hidden"
+          aria-hidden="true"
+        />
+
+        {/* 5. "I am human" Verification Box (hCaptcha Style) */}
+        <div className="pt-1">
+          <div
+            role="checkbox"
+            aria-checked={humanStatus === 'verified'}
+            aria-label="I am human verification"
+            tabIndex={isSubmitting ? -1 : 0}
+            onClick={handleHumanToggle}
+            onKeyDown={(e) => {
+              if (e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault();
+                handleHumanToggle();
+              }
+            }}
+            className={`w-full sm:max-w-[304px] px-4 py-3 rounded-xl border bg-slate-50/90 dark:bg-slate-800/80 flex items-center justify-between gap-4 select-none transition-all cursor-pointer shadow-sm ${
+              errors.human
+                ? 'border-rose-400 dark:border-rose-500 ring-2 ring-rose-500/10'
+                : humanStatus === 'verified'
+                  ? 'border-emerald-400/80 dark:border-emerald-500/60 bg-emerald-50/30 dark:bg-emerald-950/20'
+                  : 'border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-600'
+            } ${isSubmitting ? 'opacity-60 pointer-events-none' : ''}`}
+          >
+            <div className="flex items-center gap-3.5">
+              {/* Checkbox Square */}
+              <div
+                className={`w-7 h-7 rounded-md flex items-center justify-center transition-all duration-200 ${
+                  humanStatus === 'verified'
+                    ? 'bg-emerald-500 border-2 border-emerald-500 text-white shadow-sm scale-100'
+                    : humanStatus === 'verifying'
+                      ? 'border-2 border-brand-500 bg-white dark:bg-slate-900'
+                      : 'border-2 border-slate-400 dark:border-slate-500 bg-white dark:bg-slate-900 hover:border-brand-500'
+                }`}
+              >
+                {humanStatus === 'verifying' && (
+                  <Loader2 className="w-4 h-4 text-brand-600 dark:text-brand-400 animate-spin" />
+                )}
+                {humanStatus === 'verified' && (
+                  <Check className="w-4 h-4 stroke-[3] text-white animate-scale-in" />
+                )}
+              </div>
+
+              <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
+                I am human
+              </span>
+            </div>
+
+            {/* Right hCaptcha-style emblem & Privacy/Terms */}
+            <div className="flex flex-col items-center justify-center shrink-0 text-center pl-2">
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-cyan-400 to-teal-600 flex items-center justify-center shadow-xs mb-0.5">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="w-4 h-4 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 2.5C11.3 2.5 10.75 3.05 10.75 3.75V10.25H9.5V5.25C9.5 4.55 8.95 4 8.25 4C7.55 4 7 4.55 7 5.25V11.5H5.75V7.75C5.75 7.05 5.2 6.5 4.5 6.5C3.8 6.5 3.25 7.05 3.25 7.75V14.5C3.25 18.64 6.61 22 10.75 22H13.5C17.37 22 20.5 18.87 20.5 15V10.5C20.5 9.8 19.95 9.25 19.25 9.25C18.55 9.25 18 9.8 18 10.5V13.5H16.75V5.25C16.75 4.55 16.2 4 15.5 4C14.8 4 14.25 4.55 14.25 5.25V10.25H13.25V3.75C13.25 3.05 12.7 2.5 12 2.5Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <span className="text-[9px] font-bold tracking-tight text-slate-600 dark:text-slate-300 leading-none">
+                hCaptcha
+              </span>
+              <span className="text-[8px] text-slate-400 dark:text-slate-500 leading-tight mt-0.5">
+                Privacy - Terms
+              </span>
+            </div>
+          </div>
+
+          {errors.human && (
+            <p className="mt-1.5 text-xs text-rose-500 flex items-center gap-1">
+              <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+              <span>{errors.human}</span>
+            </p>
+          )}
+        </div>
+
         {/* Send Message Button with Duplicate Submission Prevention & Loading State */}
         <div className="pt-2">
           <Button
@@ -565,10 +683,6 @@ export default function ContactForm() {
             {isSubmitting ? 'Sending Message...' : 'Send Message'}
           </Button>
         </div>
-
-        <p className="text-[11px] text-center text-slate-400 dark:text-slate-500">
-          Your inquiry is securely routed to Ashish Singh’s inbox (<span className="font-semibold text-slate-600 dark:text-slate-400">{personalInfo.email}</span>).
-        </p>
       </form>
     </div>
   );
